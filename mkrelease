@@ -1,0 +1,65 @@
+; Script for generating a release archive
+
+make all
+
+set lzodir lzo-2.08
+set destdir RAM:mkrelease
+set fullvers `version file lzo.library`
+set numvers `cut "$fullvers" word 2`
+
+delete all force ${destdir}
+makedir all force ${destdir}/lzo_lib-$numvers/Libs
+makedir all force ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/proto
+makedir all force ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/interfaces
+makedir all force ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/inline4
+makedir all force ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/libraries
+makedir all force ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/lzo
+
+copy clone Install ${destdir}/lzo_lib-$numvers
+copy clone COPYING ${destdir}/lzo_lib-$numvers
+copy clone releasenotes ${destdir}/lzo_lib-$numvers
+copy clone lzo.library ${destdir}/lzo_lib-$numvers/Libs
+copy clone include/proto/lzo.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/proto
+copy clone include/interfaces/lzo.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/interfaces
+copy clone include/inline4/lzo.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/inline4
+copy clone include/libraries/lzo.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/libraries
+copy clone ${lzodir}/include/lzo/lzo1.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lzo
+copy clone ${lzodir}/include/lzo/lzo1a.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lzo
+copy clone ${lzodir}/include/lzo/lzo1b.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lzo
+copy clone ${lzodir}/include/lzo/lzo1c.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lzo
+copy clone ${lzodir}/include/lzo/lzo1f.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lzo
+copy clone ${lzodir}/include/lzo/lzo1x.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lzo
+copy clone ${lzodir}/include/lzo/lzo1y.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lzo
+copy clone ${lzodir}/include/lzo/lzo1z.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lzo
+copy clone ${lzodir}/include/lzo/lzo2a.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lzo
+copy clone ${lzodir}/include/lzo/lzo_asm.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lzo
+copy clone ${lzodir}/include/lzo/lzoconf.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lzo
+copy clone ${lzodir}/include/lzo/lzodefs.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lzo
+copy clone ${lzodir}/include/lzo/lzoutil.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lzo
+
+sed "s/lzo_lib-xx.xx/lzo_lib-$numvers/g" AutoInstall > ${destdir}/AutoInstall
+
+echo "Short:        Library for decoding mpeg audio files"  > ${destdir}/lzo_lib-$numvers/lzo_lib.readme
+echo "Author:       Fredrik Wikstrom"                      >> ${destdir}/lzo_lib-$numvers/lzo_lib.readme
+echo "Uploader:     Fredrik Wikstrom <fredrik@a500.org>"   >> ${destdir}/lzo_lib-$numvers/lzo_lib.readme
+echo "Type:         util/libs"                             >> ${destdir}/lzo_lib-$numvers/lzo_lib.readme
+echo "Version:      $numvers"                              >> ${destdir}/lzo_lib-$numvers/lzo_lib.readme
+echo "Architecture: ppc-amigaos"                           >> ${destdir}/lzo_lib-$numvers/lzo_lib.readme
+echo ""                                                    >> ${destdir}/lzo_lib-$numvers/lzo_lib.readme
+type README                                                >> ${destdir}/lzo_lib-$numvers/lzo_lib.readme
+
+copy clone ENV:Sys/def_drawer.info ${destdir}/lzo_lib-$numvers.info
+copy clone ENV:Sys/def_install.info ${destdir}/lzo_lib-$numvers/Install.info
+copy clone ENV:Sys/def_ascii.info ${destdir}/lzo_lib-$numvers/lzo_lib.readme.info
+copy clone ENV:Sys/def_ascii.info ${destdir}/lzo_lib-$numvers/COPYING.info
+copy clone ENV:Sys/def_ascii.info ${destdir}/lzo_lib-$numvers/releasenotes.info
+
+changetooltype ${destdir}/lzo_lib-$numvers/Install.info ADD "APPNAME=lzo.library"
+
+delete force RAM:lzo_lib.lha
+lha a -x -r RAM:lzo_lib.lha ${destdir}/
+
+echo "RAM:lzo_lib.lha created"
+
+copy clone ${destdir}/lzo_lib-$numvers/lzo_lib.readme RAM:
+

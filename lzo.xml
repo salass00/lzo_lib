@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE library SYSTEM "library.dtd">
+<library name="lzo" basename="LZOBase" basetype="LZOLibBase" openname="lzo.library">
+	<include>libraries/lzo.h</include>
+	<interface name="main" version="1.0" struct="LZOIFace" prefix="_main_" global="ILZO">
+		<method name="Obtain" result="uint32"/>
+		<method name="Release" result="uint32"/>
+		<method name="Expunge" result="void" status="unimplemented"/>
+		<method name="Clone" result="struct Interface *" status="unimplemented"/>
+
+		<method name="lzo1_mem_compress" result="uint32"/>
+
+		<method name="lzo1_compress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1_mem_decompress" result="uint32"/>
+
+		<method name="lzo1_decompress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1_99_mem_compress" result="uint32"/>
+
+		<method name="lzo1_99_compress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1a_mem_compress" result="uint32"/>
+
+		<method name="lzo1a_compress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1a_mem_decompress" result="uint32"/>
+
+		<method name="lzo1a_decompress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1a_99_mem_compress" result="uint32"/>
+
+		<method name="lzo1a_99_compress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1b_mem_compress" result="uint32"/>
+
+		<method name="lzo1b_compress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+			<arg name="clevel" type="int32"/>
+		</method>
+
+		<method name="lzo1b_mem_decompress" result="uint32"/>
+
+		<method name="lzo1b_decompress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1b_decompress_safe" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1b_99_mem_compress" result="uint32"/>
+
+		<method name="lzo1b_99_compress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1b_999_mem_compress" result="uint32"/>
+
+		<method name="lzo1b_999_compress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1c_mem_compress" result="uint32"/>
+
+		<method name="lzo1c_compress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+			<arg name="clevel" type="int32"/>
+		</method>
+
+		<method name="lzo1c_mem_decompress" result="uint32"/>
+
+		<method name="lzo1c_decompress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1c_decompress_safe" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1c_99_mem_compress" result="uint32"/>
+
+		<method name="lzo1c_99_compress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1c_999_mem_compress" result="uint32"/>
+
+		<method name="lzo1c_999_compress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1f_mem_compress" result="uint32"/>
+
+		<method name="lzo1f_1_compress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1f_mem_decompress" result="uint32"/>
+
+		<method name="lzo1f_decompress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1f_decompress_safe" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1f_999_mem_compress" result="uint32"/>
+
+		<method name="lzo1f_999_compress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1x_mem_compress" result="uint32"/>
+
+		<method name="lzo1x_1_compress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1x_mem_decompress" result="uint32"/>
+
+		<method name="lzo1x_decompress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1x_decompress_safe" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1x_1_11_mem_compress" result="uint32"/>
+
+		<method name="lzo1x_1_11_compress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1x_1_12_mem_compress" result="uint32"/>
+
+		<method name="lzo1x_1_12_compress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1x_1_15_mem_compress" result="uint32"/>
+
+		<method name="lzo1x_1_15_compress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1x_999_mem_compress" result="uint32"/>
+
+		<method name="lzo1x_999_compress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1x_999_compress_dict" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+			<arg name="dict" type="CONST_APTR"/>
+			<arg name="dict_len" type="uint32"/>
+		</method>
+
+		<method name="lzo1x_999_compress_level" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+			<arg name="dict" type="CONST_APTR"/>
+			<arg name="dict_len" type="uint32"/>
+			<arg name="cb" type="lzo_callback_p"/>
+			<arg name="clevel" type="int32"/>
+		</method>
+
+		<method name="lzo1x_decompress_dict_safe" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+			<arg name="dict" type="CONST_APTR"/>
+			<arg name="dict_len" type="uint32"/>
+		</method>
+
+		<method name="lzo1x_mem_optimize" result="uint32"/>
+
+		<method name="lzo1x_optimize" result="int32">
+			<arg name="src" type="APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1y_mem_compress" result="uint32"/>
+
+		<method name="lzo1y_1_compress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1y_mem_decompress" result="uint32"/>
+
+		<method name="lzo1y_decompress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1y_decompress_safe" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1y_999_mem_compress" result="uint32"/>
+
+		<method name="lzo1y_999_compress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1y_999_compress_dict" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+			<arg name="dict" type="CONST_APTR"/>
+			<arg name="dict_len" type="uint32"/>
+		</method>
+
+		<method name="lzo1y_999_compress_level" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+			<arg name="dict" type="CONST_APTR"/>
+			<arg name="dict_len" type="uint32"/>
+			<arg name="cb" type="lzo_callback_p"/>
+			<arg name="clevel" type="int32"/>
+		</method>
+
+		<method name="lzo1y_decompress_dict_safe" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+			<arg name="dict" type="CONST_APTR"/>
+			<arg name="dict_len" type="uint32"/>
+		</method>
+
+		<method name="lzo1y_mem_optimize" result="uint32"/>
+
+		<method name="lzo1y_optimize" result="int32">
+			<arg name="src" type="APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1z_mem_decompress" result="uint32"/>
+
+		<method name="lzo1z_decompress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1z_decompress_safe" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1z_999_mem_compress" result="uint32"/>
+
+		<method name="lzo1z_999_compress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo1z_999_compress_dict" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+			<arg name="dict" type="CONST_APTR"/>
+			<arg name="dict_len" type="uint32"/>
+		</method>
+
+		<method name="lzo1z_999_compress_level" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+			<arg name="dict" type="CONST_APTR"/>
+			<arg name="dict_len" type="uint32"/>
+			<arg name="cb" type="lzo_callback_p"/>
+			<arg name="clevel" type="int32"/>
+		</method>
+
+		<method name="lzo1z_decompress_dict_safe" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+			<arg name="dict" type="CONST_APTR"/>
+			<arg name="dict_len" type="uint32"/>
+		</method>
+
+		<method name="lzo2a_mem_decompress" result="uint32"/>
+
+		<method name="lzo2a_decompress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo2a_decompress_safe" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+
+		<method name="lzo2a_999_mem_compress" result="uint32"/>
+
+		<method name="lzo2a_999_compress" result="int32">
+			<arg name="src" type="CONST_APTR"/>
+			<arg name="src_len" type="uint32"/>
+			<arg name="dst" type="APTR"/>
+			<arg name="dst_len" type="uint32 *"/>
+			<arg name="wrkmem" type="APTR"/>
+		</method>
+	</interface>
+</library>

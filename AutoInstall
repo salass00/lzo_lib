@@ -1,0 +1,3 @@
+; AutoInstall script for AmiUpdate
+
+CopyStore lzo_lib-xx.xx/Libs/lzo.library LIBS:

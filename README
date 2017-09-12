@@ -1,0 +1,20 @@
+An AmigaOS shared library implementation of Markus F.X.J. Oberhumer's liblzo.
+Currently it is based on the 2.08 release.
+
+Link to lzo home page:
+http://www.oberhumer.com/opensource/lzo/
+
+Installation:
+
+Copy Libs/lzo.library LIBS:
+
+Source code:
+
+The source code for current and older versions is available on github:
+
+https://github.com/salass00/lzo_lib
+
+Changes:
+
+For a list of changes in this and earlier versions see the releasenotes file.
+
