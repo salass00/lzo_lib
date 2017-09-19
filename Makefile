@@ -1,7 +1,7 @@
 TARGET  := lzo.library
 VERSION := 53
 
-LZODIR := lzo-2.08
+LZODIR := lzo-2.10
 
 CC     := ppc-amigaos-gcc
 STRIP  := ppc-amigaos-strip

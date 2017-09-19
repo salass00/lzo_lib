@@ -2,7 +2,7 @@
 
 make all
 
-set lzodir lzo-2.08
+set lzodir lzo-2.10
 set destdir RAM:mkrelease
 set fullvers `version file lzo.library`
 set numvers `cut "$fullvers" word 2`
