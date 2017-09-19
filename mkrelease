@@ -14,6 +14,7 @@ makedir all force ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/interface
 makedir all force ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/inline4
 makedir all force ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/libraries
 makedir all force ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/lzo
+makedir all force ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lib
 
 copy clone Install ${destdir}/lzo_lib-$numvers
 copy clone COPYING ${destdir}/lzo_lib-$numvers
@@ -23,19 +24,20 @@ copy clone include/proto/lzo.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/incl
 copy clone include/interfaces/lzo.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/interfaces
 copy clone include/inline4/lzo.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/inline4
 copy clone include/libraries/lzo.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/libraries
-copy clone ${lzodir}/include/lzo/lzo1.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lzo
-copy clone ${lzodir}/include/lzo/lzo1a.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lzo
-copy clone ${lzodir}/include/lzo/lzo1b.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lzo
-copy clone ${lzodir}/include/lzo/lzo1c.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lzo
-copy clone ${lzodir}/include/lzo/lzo1f.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lzo
-copy clone ${lzodir}/include/lzo/lzo1x.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lzo
-copy clone ${lzodir}/include/lzo/lzo1y.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lzo
-copy clone ${lzodir}/include/lzo/lzo1z.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lzo
-copy clone ${lzodir}/include/lzo/lzo2a.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lzo
-copy clone ${lzodir}/include/lzo/lzo_asm.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lzo
-copy clone ${lzodir}/include/lzo/lzoconf.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lzo
-copy clone ${lzodir}/include/lzo/lzodefs.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lzo
-copy clone ${lzodir}/include/lzo/lzoutil.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lzo
+copy clone ${lzodir}/include/lzo/lzo1.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/lzo
+copy clone ${lzodir}/include/lzo/lzo1a.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/lzo
+copy clone ${lzodir}/include/lzo/lzo1b.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/lzo
+copy clone ${lzodir}/include/lzo/lzo1c.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/lzo
+copy clone ${lzodir}/include/lzo/lzo1f.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/lzo
+copy clone ${lzodir}/include/lzo/lzo1x.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/lzo
+copy clone ${lzodir}/include/lzo/lzo1y.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/lzo
+copy clone ${lzodir}/include/lzo/lzo1z.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/lzo
+copy clone ${lzodir}/include/lzo/lzo2a.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/lzo
+copy clone ${lzodir}/include/lzo/lzo_asm.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/lzo
+copy clone ${lzodir}/include/lzo/lzoconf.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/lzo
+copy clone ${lzodir}/include/lzo/lzodefs.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/lzo
+copy clone ${lzodir}/include/lzo/lzoutil.h ${destdir}/lzo_lib-$numvers/SDK/local/newlib/include/lzo
+copy clone liblzo.a ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lib
 
 sed "s/lzo_lib-xx.xx/lzo_lib-$numvers/g" AutoInstall > ${destdir}/AutoInstall
 
