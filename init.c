@@ -18,6 +18,8 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+#define COMPILING_LZO_LIBRARY
+
 #include <dos/dos.h>
 #include <proto/exec.h>
 #include <interfaces/lzo.h>

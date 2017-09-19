@@ -81,5 +81,93 @@ struct LZOBase {
 	uint32 lzo2a_999_mem_compress;
 };
 
-#endif
+#ifndef COMPILING_LZO_LIBRARY
+
+#undef LZO1_MEM_COMPRESS
+#undef LZO1_MEM_DECOMPRESS
+#undef LZO1_99_MEM_COMPRESS
+
+#undef LZO1A_MEM_COMPRESS
+#undef LZO1A_MEM_DECOMPRESS
+#undef LZO1A_99_MEM_COMPRESS
+
+#undef LZO1B_MEM_COMPRESS
+#undef LZO1B_MEM_DECOMPRESS
+#undef LZO1B_99_MEM_COMPRESS
+#undef LZO1B_999_MEM_COMPRESS
+
+#undef LZO1C_MEM_COMPRESS
+#undef LZO1C_MEM_DECOMPRESS
+#undef LZO1C_99_MEM_COMPRESS
+#undef LZO1C_999_MEM_COMPRESS
+
+#undef LZO1F_MEM_COMPRESS
+#undef LZO1F_MEM_DECOMPRESS
+#undef LZO1F_999_MEM_COMPRESS
+
+#undef LZO1X_MEM_COMPRESS
+#undef LZO1X_MEM_DECOMPRESS
+#undef LZO1X_MEM_OPTIMIZE
+#undef LZO1X_1_MEM_COMPRESS
+#undef LZO1X_1_11_MEM_COMPRESS
+#undef LZO1X_1_12_MEM_COMPRESS
+#undef LZO1X_1_15_MEM_COMPRESS
+#undef LZO1X_999_MEM_COMPRESS
+
+#undef LZO1Y_MEM_COMPRESS
+#undef LZO1Y_MEM_DECOMPRESS
+#undef LZO1Y_MEM_OPTIMIZE
+#undef LZO1Y_999_MEM_COMPRESS
+
+#undef LZO1Z_MEM_DECOMPRESS
+#undef LZO1Z_999_MEM_COMPRESS
+
+#undef LZO2A_MEM_DECOMPRESS
+#undef LZO2A_999_MEM_COMPRESS
+
+#define LZO1_MEM_COMPRESS       (((const struct LZOBase *)LZOBase)->lzo1_mem_compress)
+#define LZO1_MEM_DECOMPRESS     (((const struct LZOBase *)LZOBase)->lzo1_mem_decompress)
+#define LZO1_99_MEM_COMPRESS    (((const struct LZOBase *)LZOBase)->lzo1_99_mem_compress)
+
+#define LZO1A_MEM_COMPRESS      (((const struct LZOBase *)LZOBase)->lzo1a_mem_compress)
+#define LZO1A_MEM_DECOMPRESS    (((const struct LZOBase *)LZOBase)->lzo1a_mem_decompress)
+#define LZO1A_99_MEM_COMPRESS   (((const struct LZOBase *)LZOBase)->lzo1a_99_mem_compress)
+
+#define LZO1B_MEM_COMPRESS      (((const struct LZOBase *)LZOBase)->lzo1b_mem_compress)
+#define LZO1B_MEM_DECOMPRESS    (((const struct LZOBase *)LZOBase)->lzo1b_mem_decompress)
+#define LZO1B_99_MEM_COMPRESS   (((const struct LZOBase *)LZOBase)->lzo1b_99_mem_compress)
+#define LZO1B_999_MEM_COMPRESS  (((const struct LZOBase *)LZOBase)->lzo1b_999_mem_compress)
+
+#define LZO1C_MEM_COMPRESS      (((const struct LZOBase *)LZOBase)->lzo1c_mem_compress)
+#define LZO1C_MEM_DECOMPRESS    (((const struct LZOBase *)LZOBase)->lzo1c_mem_decompress)
+#define LZO1C_99_MEM_COMPRESS   (((const struct LZOBase *)LZOBase)->lzo1c_99_mem_compress)
+#define LZO1C_999_MEM_COMPRESS  (((const struct LZOBase *)LZOBase)->lzo1c_999_mem_compress)
+
+#define LZO1F_MEM_COMPRESS      (((const struct LZOBase *)LZOBase)->lzo1f_mem_compress)
+#define LZO1F_MEM_DECOMPRESS    (((const struct LZOBase *)LZOBase)->lzo1f_mem_decompress)
+#define LZO1F_999_MEM_COMPRESS  (((const struct LZOBase *)LZOBase)->lzo1f_999_mem_compress)
+
+#define LZO1X_MEM_COMPRESS      (((const struct LZOBase *)LZOBase)->lzo1x_mem_compress)
+#define LZO1X_MEM_DECOMPRESS    (((const struct LZOBase *)LZOBase)->lzo1x_mem_decompress)
+#define LZO1X_MEM_OPTIMIZE      (((const struct LZOBase *)LZOBase)->lzo1x_mem_optimize)
+#define LZO1X_1_MEM_COMPRESS    (((const struct LZOBase *)LZOBase)->lzo1x_1_mem_compress)
+#define LZO1X_1_11_MEM_COMPRESS (((const struct LZOBase *)LZOBase)->lzo1x_1_11_mem_compress)
+#define LZO1X_1_12_MEM_COMPRESS (((const struct LZOBase *)LZOBase)->lzo1x_1_12_mem_compress)
+#define LZO1X_1_15_MEM_COMPRESS (((const struct LZOBase *)LZOBase)->lzo1x_1_15_mem_compress)
+#define LZO1X_999_MEM_COMPRESS  (((const struct LZOBase *)LZOBase)->lzo1x_999_mem_compress)
+
+#define LZO1Y_MEM_COMPRESS      (((const struct LZOBase *)LZOBase)->lzo1y_mem_compress)
+#define LZO1Y_MEM_DECOMPRESS    (((const struct LZOBase *)LZOBase)->lzo1y_mem_decompress)
+#define LZO1Y_MEM_OPTIMIZE      (((const struct LZOBase *)LZOBase)->lzo1y_mem_optimize)
+#define LZO1Y_999_MEM_COMPRESS  (((const struct LZOBase *)LZOBase)->lzo1y_999_mem_compress)
+
+#define LZO1Z_MEM_DECOMPRESS    (((const struct LZOBase *)LZOBase)->lzo1z_mem_decompress)
+#define LZO1Z_999_MEM_COMPRESS  (((const struct LZOBase *)LZOBase)->lzo1z_999_mem_compress)
+
+#define LZO2A_MEM_DECOMPRESS    (((const struct LZOBase *)LZOBase)->lzo2a_mem_decompress)
+#define LZO2A_999_MEM_COMPRESS  (((const struct LZOBase *)LZOBase)->lzo2a_999_mem_compress)
+
+#endif /* COMPILING_LZO_LIBRARY */
+
+#endif /* LIBRARIES_LZO_H */
 
