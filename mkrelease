@@ -41,14 +41,14 @@ copy clone liblzo.a ${destdir}/lzo_lib-$numvers/SDK/local/newlib/lib
 
 sed "s/lzo_lib-xx.xx/lzo_lib-$numvers/g" AutoInstall > ${destdir}/AutoInstall
 
-echo "Short:        Library for decoding mpeg audio files"  > ${destdir}/lzo_lib-$numvers/lzo_lib.readme
-echo "Author:       Fredrik Wikstrom"                      >> ${destdir}/lzo_lib-$numvers/lzo_lib.readme
-echo "Uploader:     Fredrik Wikstrom <fredrik@a500.org>"   >> ${destdir}/lzo_lib-$numvers/lzo_lib.readme
-echo "Type:         util/libs"                             >> ${destdir}/lzo_lib-$numvers/lzo_lib.readme
-echo "Version:      $numvers"                              >> ${destdir}/lzo_lib-$numvers/lzo_lib.readme
-echo "Architecture: ppc-amigaos"                           >> ${destdir}/lzo_lib-$numvers/lzo_lib.readme
-echo ""                                                    >> ${destdir}/lzo_lib-$numvers/lzo_lib.readme
-type README                                                >> ${destdir}/lzo_lib-$numvers/lzo_lib.readme
+echo "Short:        LZO implemented as a shared library"  > ${destdir}/lzo_lib-$numvers/lzo_lib.readme
+echo "Author:       Fredrik Wikstrom"                    >> ${destdir}/lzo_lib-$numvers/lzo_lib.readme
+echo "Uploader:     Fredrik Wikstrom <fredrik@a500.org>" >> ${destdir}/lzo_lib-$numvers/lzo_lib.readme
+echo "Type:         util/libs"                           >> ${destdir}/lzo_lib-$numvers/lzo_lib.readme
+echo "Version:      $numvers"                            >> ${destdir}/lzo_lib-$numvers/lzo_lib.readme
+echo "Architecture: ppc-amigaos"                         >> ${destdir}/lzo_lib-$numvers/lzo_lib.readme
+echo ""                                                  >> ${destdir}/lzo_lib-$numvers/lzo_lib.readme
+type README                                              >> ${destdir}/lzo_lib-$numvers/lzo_lib.readme
 
 copy clone ENV:Sys/def_drawer.info ${destdir}/lzo_lib-$numvers.info
 copy clone ENV:Sys/def_install.info ${destdir}/lzo_lib-$numvers/Install.info
