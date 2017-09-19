@@ -53,7 +53,7 @@ main_SRCS := main/Obtain.c main/Release.c main/lzo1_mem_compress.c \
              main/lzo2a_999_mem_compress.c main/lzo2a_999_compress.c 
 main_OBJS := $(main_SRCS:.c=.o)
 
-SRCS := init.c malloc.c
+SRCS := init.c
 OBJS := $(main_SRCS:.c=.o) $(SRCS:.c=.o)
 
 STATIC_SRCS := static/autoinit_lzo_base.c static/autoinit_lzo_main.c static/lzo1.c \

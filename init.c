@@ -37,9 +37,6 @@ struct LZOBasePrivate {
 	/* If you need more data fields, add them here */
 };
 
-extern int setup_malloc(void);
-extern void cleanup_malloc(void);
-
 /*
  * The system (and compiler) rely on a symbol named _start which marks
  * the beginning of execution of an ELF file. To prevent others from 
@@ -128,7 +125,6 @@ static BPTR libExpunge(struct LibraryManagerInterface *Self) {
 		if (result != ZERO) {
 			/* Undo what the init code did */
 			CloseInterface((struct Interface *)INewlib);
-			cleanup_malloc();
 
 			IExec->Remove((struct Node *)libBase);
 			IExec->DeleteLibrary((struct Library *)libBase);
@@ -197,11 +193,6 @@ static struct LZOBasePrivate *libInit(struct LZOBasePrivate *libBase, BPTR segli
 
 	IExec = iexec;
 
-	if (!setup_malloc()) {
-		IExec->Alert(AG_NoMemory);
-		goto cleanup;
-	}
-
 	INewlib = (struct NewlibIFace *)OpenInterface("newlib.library", 53);
 	if (INewlib == NULL) {
 		IExec->Alert(AG_OpenLib|AO_NewlibLib);
@@ -211,8 +202,6 @@ static struct LZOBasePrivate *libInit(struct LZOBasePrivate *libBase, BPTR segli
 	return libBase;
 
 cleanup:
-	cleanup_malloc();
-
 	IExec->DeleteLibrary((struct Library *)libBase);
 
 	return NULL;
