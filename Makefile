@@ -56,8 +56,13 @@ main_OBJS := $(main_SRCS:.c=.o)
 SRCS := init.c malloc.c
 OBJS := $(main_SRCS:.c=.o) $(SRCS:.c=.o)
 
+STATIC_SRCS := static/autoinit_lzo_base.c static/autoinit_lzo_main.c static/lzo1.c \
+               static/lzo1a.c static/lzo1b.c static/lzo1c.c static/lzo1f.c static/lzo1x.c \
+               static/lzo1y.c static/lzo1z.c static/lzo2a.c
+STATIC_OBJS := $(STATIC_SRCS:.c=.o)
+
 .PHONY: all
-all: $(TARGET)
+all: $(TARGET) liblzo.a
 
 init.o: $(TARGET)_rev.h lzo_vectors.c lzo_vectors.h
 $(main_OBJS): lzo_vectors.h
@@ -71,6 +76,10 @@ $(LZODIR)/liblzo-static.a: $(LZO_OBJS)
 $(TARGET): $(OBJS) $(LZODIR)/liblzo-static.a
 	$(CC) $(LDFLAGS) -nostartfiles -o $@.debug $^ $(LIBS)
 	$(STRIP) -R.comment -o $@ $@.debug
+
+liblzo.a: $(STATIC_OBJS)
+	$(AR) -crv $@ $^
+	$(RANLIB) $@
 
 .PHONY: clean
 clean:
