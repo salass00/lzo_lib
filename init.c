@@ -29,7 +29,7 @@ static const TEXT USED verstag[] = VERSTAG;
 struct ExecIFace   *IExec;
 struct NewlibIFace *INewlib;
 
-struct LZOLibBase {
+struct LZOBase {
 	struct Library libNode;
 	BPTR           segList;
 	/* If you need more data fields, add them here */
@@ -84,8 +84,8 @@ static void CloseInterface(struct Interface *interface) {
 }
 
 /* Open the library */
-static struct LZOLibBase *libOpen(struct LibraryManagerInterface *Self, ULONG version) {
-	struct LZOLibBase *libBase = (struct LZOLibBase *)Self->Data.LibBase; 
+static struct LZOBase *libOpen(struct LibraryManagerInterface *Self, ULONG version) {
+	struct LZOBase *libBase = (struct LZOBase *)Self->Data.LibBase; 
 
 	if (version > VERSION) {
 		return NULL;
@@ -103,7 +103,7 @@ static struct LZOLibBase *libOpen(struct LibraryManagerInterface *Self, ULONG ve
 
 /* Close the library */
 static BPTR libClose(struct LibraryManagerInterface *Self) {
-	struct LZOLibBase *libBase = (struct LZOLibBase *)Self->Data.LibBase;
+	struct LZOBase *libBase = (struct LZOBase *)Self->Data.LibBase;
 
 	/* Make sure to undo what open did */
 
@@ -115,7 +115,7 @@ static BPTR libClose(struct LibraryManagerInterface *Self) {
 
 /* Expunge the library */
 static BPTR libExpunge(struct LibraryManagerInterface *Self) {
-    struct LZOLibBase *libBase = (struct LZOLibBase *)Self->Data.LibBase;
+    struct LZOBase *libBase = (struct LZOBase *)Self->Data.LibBase;
 	/* If your library cannot be expunged, return 0 */
 	BPTR result;
 
@@ -140,7 +140,7 @@ static BPTR libExpunge(struct LibraryManagerInterface *Self) {
 }
 
 /* The ROMTAG Init Function */
-static struct LZOLibBase *libInit(struct LZOLibBase *libBase, BPTR seglist, struct ExecIFace *iexec) {
+static struct LZOBase *libInit(struct LZOBase *libBase, BPTR seglist, struct ExecIFace *iexec) {
 	libBase->libNode.lib_Node.ln_Type = NT_LIBRARY;
 	libBase->libNode.lib_Node.ln_Pri  = 0;
 	libBase->libNode.lib_Node.ln_Name = (STRPTR)"lzo.library";
@@ -246,7 +246,7 @@ static const CONST_APTR libInterfaces[] = {
 };
 
 static const struct TagItem libCreateTags[] = {
-	{ CLT_DataSize,   sizeof(struct LZOLibBase) },
+	{ CLT_DataSize,   sizeof(struct LZOBase) },
 	{ CLT_InitFunc,   (Tag)libInit              },
 	{ CLT_Interfaces, (Tag)libInterfaces        },
 	/* Uncomment the following line if you have a 68k jump table */

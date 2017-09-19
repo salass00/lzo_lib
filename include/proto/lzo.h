@@ -25,9 +25,9 @@
   #endif
  #else
   #if defined(__cplusplus) && defined(__USE_AMIGAOS_NAMESPACE__)
-   extern struct AmigaOS::LZOLibBase * LZOBase;
+   extern struct AmigaOS::LZOBase * LZOBase;
   #else
-   extern struct LZOLibBase * LZOBase;
+   extern struct LZOBase * LZOBase;
   #endif
  #endif /* __USE_BASETYPE__ */
 #endif /* __NOLIBBASE__ */
