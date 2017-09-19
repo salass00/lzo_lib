@@ -29,9 +29,9 @@ static const TEXT USED verstag[] = VERSTAG;
 struct ExecIFace   *IExec;
 struct NewlibIFace *INewlib;
 
-struct LZOBase {
-	struct Library libNode;
-	BPTR           segList;
+struct LZOBasePrivate {
+	struct LZOBase Public;
+	BPTR           SegList;
 	/* If you need more data fields, add them here */
 };
 
@@ -84,8 +84,8 @@ static void CloseInterface(struct Interface *interface) {
 }
 
 /* Open the library */
-static struct LZOBase *libOpen(struct LibraryManagerInterface *Self, ULONG version) {
-	struct LZOBase *libBase = (struct LZOBase *)Self->Data.LibBase; 
+static struct LZOBasePrivate *libOpen(struct LibraryManagerInterface *Self, ULONG version) {
+	struct LZOBasePrivate *libBase = (struct LZOBasePrivate *)Self->Data.LibBase; 
 
 	if (version > VERSION) {
 		return NULL;
@@ -96,32 +96,32 @@ static struct LZOBase *libOpen(struct LibraryManagerInterface *Self, ULONG versi
 
 
 	/* Add up the open count */
-	libBase->libNode.lib_OpenCnt++;
+	libBase->Public.libNode.lib_OpenCnt++;
 
 	return libBase;
 }
 
 /* Close the library */
 static BPTR libClose(struct LibraryManagerInterface *Self) {
-	struct LZOBase *libBase = (struct LZOBase *)Self->Data.LibBase;
+	struct LZOBasePrivate *libBase = (struct LZOBasePrivate *)Self->Data.LibBase;
 
 	/* Make sure to undo what open did */
 
 	/* Make the close count */
-	libBase->libNode.lib_OpenCnt--;
+	libBase->Public.libNode.lib_OpenCnt--;
 
 	return ZERO;
 }
 
 /* Expunge the library */
 static BPTR libExpunge(struct LibraryManagerInterface *Self) {
-    struct LZOBase *libBase = (struct LZOBase *)Self->Data.LibBase;
+	struct LZOBasePrivate *libBase = (struct LZOBasePrivate *)Self->Data.LibBase;
 	/* If your library cannot be expunged, return 0 */
 	BPTR result;
 
-	if (libBase->libNode.lib_OpenCnt == 0)
+	if (libBase->Public.libNode.lib_OpenCnt == 0)
 	{
-		result = libBase->segList;
+		result = libBase->SegList;
 
 		if (result != ZERO) {
 			/* Undo what the init code did */
@@ -133,23 +133,65 @@ static BPTR libExpunge(struct LibraryManagerInterface *Self) {
 		}
 	} else {
 		result = ZERO;
-		libBase->libNode.lib_Flags |= LIBF_DELEXP;
+		libBase->Public.libNode.lib_Flags |= LIBF_DELEXP;
 	}
 
 	return result;
 }
 
 /* The ROMTAG Init Function */
-static struct LZOBase *libInit(struct LZOBase *libBase, BPTR seglist, struct ExecIFace *iexec) {
-	libBase->libNode.lib_Node.ln_Type = NT_LIBRARY;
-	libBase->libNode.lib_Node.ln_Pri  = 0;
-	libBase->libNode.lib_Node.ln_Name = (STRPTR)"lzo.library";
-	libBase->libNode.lib_Flags        = LIBF_SUMUSED|LIBF_CHANGED;
-	libBase->libNode.lib_Version      = VERSION;
-	libBase->libNode.lib_Revision     = REVISION;
-	libBase->libNode.lib_IdString     = (STRPTR)VSTRING;
+static struct LZOBasePrivate *libInit(struct LZOBasePrivate *libBase, BPTR seglist, struct ExecIFace *iexec) {
+	libBase->Public.libNode.lib_Node.ln_Type = NT_LIBRARY;
+	libBase->Public.libNode.lib_Node.ln_Pri  = 0;
+	libBase->Public.libNode.lib_Node.ln_Name = (STRPTR)"lzo.library";
+	libBase->Public.libNode.lib_Flags        = LIBF_SUMUSED|LIBF_CHANGED;
+	libBase->Public.libNode.lib_Version      = VERSION;
+	libBase->Public.libNode.lib_Revision     = REVISION;
+	libBase->Public.libNode.lib_IdString     = (STRPTR)VSTRING;
 
-    libBase->segList = seglist;
+	libBase->Public.lzo1_mem_compress        = LZO1_MEM_COMPRESS;
+	libBase->Public.lzo1_mem_decompress      = LZO1_MEM_DECOMPRESS;
+	libBase->Public.lzo1_99_mem_compress     = LZO1_99_MEM_COMPRESS;
+
+	libBase->Public.lzo1a_mem_compress       = LZO1A_MEM_COMPRESS;
+	libBase->Public.lzo1a_mem_decompress     = LZO1A_MEM_DECOMPRESS;
+	libBase->Public.lzo1a_99_mem_compress    = LZO1A_99_MEM_COMPRESS;
+
+	libBase->Public.lzo1b_mem_compress       = LZO1B_MEM_COMPRESS;
+	libBase->Public.lzo1b_mem_decompress     = LZO1B_MEM_DECOMPRESS;
+	libBase->Public.lzo1b_99_mem_compress    = LZO1B_99_MEM_COMPRESS;
+	libBase->Public.lzo1b_999_mem_compress   = LZO1B_999_MEM_COMPRESS;
+
+	libBase->Public.lzo1c_mem_compress       = LZO1C_MEM_COMPRESS;
+	libBase->Public.lzo1c_mem_decompress     = LZO1C_MEM_DECOMPRESS;
+	libBase->Public.lzo1c_99_mem_compress    = LZO1C_99_MEM_COMPRESS;
+	libBase->Public.lzo1c_999_mem_compress   = LZO1C_999_MEM_COMPRESS;
+
+	libBase->Public.lzo1f_mem_compress       = LZO1F_MEM_COMPRESS;
+	libBase->Public.lzo1f_mem_decompress     = LZO1F_MEM_DECOMPRESS;
+	libBase->Public.lzo1f_999_mem_compress   = LZO1F_999_MEM_COMPRESS;
+
+	libBase->Public.lzo1x_mem_compress       = LZO1X_MEM_COMPRESS;
+	libBase->Public.lzo1x_mem_decompress     = LZO1X_MEM_DECOMPRESS;
+	libBase->Public.lzo1x_mem_optimize       = LZO1X_MEM_OPTIMIZE;
+	libBase->Public.lzo1x_1_mem_compress     = LZO1X_1_MEM_COMPRESS;
+	libBase->Public.lzo1x_1_11_mem_compress  = LZO1X_1_11_MEM_COMPRESS;
+	libBase->Public.lzo1x_1_12_mem_compress  = LZO1X_1_12_MEM_COMPRESS;
+	libBase->Public.lzo1x_1_15_mem_compress  = LZO1X_1_15_MEM_COMPRESS;
+	libBase->Public.lzo1x_999_mem_compress   = LZO1X_999_MEM_COMPRESS;
+
+	libBase->Public.lzo1y_mem_compress       = LZO1Y_MEM_COMPRESS;
+	libBase->Public.lzo1y_mem_decompress     = LZO1Y_MEM_DECOMPRESS;
+	libBase->Public.lzo1y_mem_optimize       = LZO1Y_MEM_OPTIMIZE;
+	libBase->Public.lzo1y_999_mem_compress   = LZO1Y_999_MEM_COMPRESS;
+
+	libBase->Public.lzo1z_mem_decompress     = LZO1Z_MEM_DECOMPRESS;
+	libBase->Public.lzo1z_999_mem_compress   = LZO1Z_999_MEM_COMPRESS;
+
+	libBase->Public.lzo2a_mem_decompress     = LZO2A_MEM_DECOMPRESS;
+	libBase->Public.lzo2a_999_mem_compress   = LZO2A_999_MEM_COMPRESS;
+
+	libBase->SegList = seglist;
 
 	IExec = iexec;
 
@@ -246,7 +288,7 @@ static const CONST_APTR libInterfaces[] = {
 };
 
 static const struct TagItem libCreateTags[] = {
-	{ CLT_DataSize,   sizeof(struct LZOBase) },
+	{ CLT_DataSize,   sizeof(struct LZOBasePrivate) },
 	{ CLT_InitFunc,   (Tag)libInit              },
 	{ CLT_Interfaces, (Tag)libInterfaces        },
 	/* Uncomment the following line if you have a 68k jump table */
